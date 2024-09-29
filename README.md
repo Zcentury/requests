@@ -1,6 +1,11 @@
 ### 介绍
 一个方便好用的 **Go Requests** 库
 
+### 安装
+
+```shell
+go get -u github.com/Zcentury/requests
+```
 
 ### 使用
 

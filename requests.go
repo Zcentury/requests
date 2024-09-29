@@ -4,7 +4,7 @@ import (
 	"crypto/tls"
 	"encoding/json"
 	"errors"
-	"github.com/Zcentury/gologger"
+	"github.com/Zcentury/logger"
 	"github.com/Zcentury/requests/method"
 	"github.com/Zcentury/requests/params"
 	"io"
@@ -27,7 +27,7 @@ func NewRequests(client *http.Client) *Requests {
 func (r *Requests) SetProxy(proxy string) error {
 	proxyURL, err := urlutil.Parse(proxy)
 	if err != nil {
-		gologger.Error().Msg("解析代理地址失败")
+		logger.Error("解析代理地址失败")
 		return errors.New("解析代理地址失败")
 	}
 
@@ -51,7 +51,7 @@ func (r *Requests) Request(m method.Method, url string, args ...any) *Response {
 	data := ""
 
 	if url == "" {
-		gologger.Error().Msg("请传入URL")
+		logger.Error("请传入URL")
 	}
 
 	if value, ok := argMap["UrlParams"]; ok {
@@ -67,18 +67,18 @@ func (r *Requests) Request(m method.Method, url string, args ...any) *Response {
 		if value, ok := argMap["Body"]; ok {
 			data = value.(string)
 		} else {
-			gologger.Error().Msg("请传入Body")
+			logger.Error("请传入Body")
 			return nil
 		}
 		// 创建一个新的POST请求
 		request, err = http.NewRequest(method.POST.String(), url, strings.NewReader(data))
 		//request, err := http.NewRequest("POST", url, bytes.NewBuffer(data))
 		if err != nil {
-			gologger.Error().Msgf("创建请求失败:%s", err)
+			logger.Errorf("创建请求失败:%s", err)
 			return nil
 		}
 	default:
-		gologger.Error().Msg("不支持的请求方式")
+		logger.Error("不支持的请求方式")
 		return nil
 	}
 
@@ -97,7 +97,7 @@ func (r *Requests) Request(m method.Method, url string, args ...any) *Response {
 		if proxy, ok := value.(params.Proxy)["http"]; ok {
 			proxyURL, err := urlutil.Parse(proxy)
 			if err != nil {
-				gologger.Error().Msg("解析代理地址失败")
+				logger.Error("解析代理地址失败")
 				return nil
 			}
 			transport.Proxy = http.ProxyURL(proxyURL)
@@ -111,14 +111,14 @@ func (r *Requests) Request(m method.Method, url string, args ...any) *Response {
 	//发送
 	response, err := r.client.Do(request)
 	if err != nil {
-		gologger.Error().Msg(err.Error())
+		logger.Error(err.Error())
 		return nil
 	}
 	defer response.Body.Close()
 
 	body, err := io.ReadAll(response.Body)
 	if err != nil {
-		gologger.Error().Msgf("读取响应失败:%s", err)
+		logger.Errorf("读取响应失败:%s", err)
 		return nil
 	}
 
@@ -153,7 +153,7 @@ func resolvingArgs(args ...interface{}) map[string]interface{} {
 			case "params.BodyString":
 				result["Body"] = string(arg.(params.BodyString))
 			default:
-				gologger.Error().Msg("未能识别的参数类型")
+				logger.Error("未能识别的参数类型")
 			}
 
 		case reflect.Map:
@@ -185,11 +185,11 @@ func resolvingArgs(args ...interface{}) map[string]interface{} {
 				result["Proxy"] = arg.(params.Proxy)
 
 			default:
-				gologger.Error().Msg("未能识别的参数")
+				logger.Error("未能识别的参数")
 			}
 
 		default:
-			gologger.Error().Msg("未能识别的参数")
+			logger.Error("未能识别的参数")
 		}
 
 	}

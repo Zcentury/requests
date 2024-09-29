@@ -1,11 +1,9 @@
 package requests
 
 import (
-	"github.com/Zcentury/gologger"
-	"github.com/Zcentury/requests/config"
+	"github.com/Zcentury/logger"
 )
 
 func init() {
-	gologger.LoggerOptions.SetFormatter(config.NewCLI(true))
-	gologger.LoggerOptions.SetTimestamp(true)
+	logger.SetLevel(logger.DebugLevel)
 }
