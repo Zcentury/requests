@@ -1,8 +1,14 @@
 package requests
 
-import "net/http"
+import (
+	"io"
+	"net/http"
+)
 
 type Response struct {
-	Response *http.Response
-	Text     string
+	Response   *http.Response
+	Text       string
+	StatusCode int
+	Body       io.ReadCloser
+	Header     http.Header
 }
