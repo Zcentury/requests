@@ -2,8 +2,9 @@ package requests
 
 import (
 	"github.com/Zcentury/logger"
+	"github.com/Zcentury/logger/levels"
 )
 
 func init() {
-	logger.SetLevel(logger.DebugLevel)
+	logger.SetLevel(levels.DebugLevel)
 }
