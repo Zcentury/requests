@@ -3,7 +3,7 @@ module github.com/Zcentury/requests
 go 1.23.1
 
 require (
-	github.com/Zcentury/logger v1.0.0
+	github.com/Zcentury/logger v1.5.1
 	golang.org/x/net v0.30.0
 )
 

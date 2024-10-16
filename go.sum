@@ -1,5 +1,9 @@
 github.com/Zcentury/logger v1.0.0 h1:ErkJCtVvQGge3mouf5tnwQbAPb/VKS0k4ufpkRJ8F18=
 github.com/Zcentury/logger v1.0.0/go.mod h1:Nu4N+avaf+7+pkDuh5qUI9oOcxIUDHBGpK9chN2Z+zk=
+github.com/Zcentury/logger v1.5.0 h1:D6xAYpV8aVO1GOidvEygugD9eY4qcH7udlkHEUowylY=
+github.com/Zcentury/logger v1.5.0/go.mod h1:+Rnso3unkVkc+/jR+s0pFQyI9Tn3aOB5eyJE4oW+F9A=
+github.com/Zcentury/logger v1.5.1 h1:6nZB8FKLf9oCIttxZLgxJgoovb38IRQtScB8mIiFhwU=
+github.com/Zcentury/logger v1.5.1/go.mod h1:+Rnso3unkVkc+/jR+s0pFQyI9Tn3aOB5eyJE4oW+F9A=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
