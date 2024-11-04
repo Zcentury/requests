@@ -15,6 +15,8 @@ go get -u github.com/Zcentury/requests
 resp := requests.Get("https://www.baidu.com/")
 ```
 
+
+
 > POST
 
 ```go
@@ -56,3 +58,20 @@ if get1 != nil {
 }
 ```
 
+
+
+> 使用代理
+
+```go
+resp := requests.Get("https://www.baidu.com/", params.Proxy{
+    "http":   "http://127.0.0.1:8080",
+	"https":  "https://127.0.0.1:8080",
+	"socks5": "127.0.0.1:7890",
+})
+```
+
+
+
+### 版本更新
+
+- **2024/11/04**：更新了压缩数据包自动解压，去掉内置错误日志，优化项目结构
