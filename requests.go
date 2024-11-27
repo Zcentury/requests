@@ -29,7 +29,7 @@ func NewRequests(client *http.Client) *Requests {
 }
 
 func (r *Requests) Request(m method.Method, url string, args ...any) (*Response, error) {
-	request, err := r.generateRequest(m, url, args)
+	request, err := r.generateRequest(m, url, args...)
 	if err != nil {
 		return nil, err
 	}
