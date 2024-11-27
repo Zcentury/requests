@@ -1,6 +1,7 @@
 package requests
 
 import (
+	"crypto/tls"
 	"github.com/Zcentury/requests/method"
 	"net/http"
 	"net/http/cookiejar"
@@ -9,8 +10,15 @@ import (
 func Session() *Requests {
 	cookieJar, _ := cookiejar.New(nil)
 
+	transport := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // 忽略证书验证
+		},
+	}
+
 	client := &http.Client{
-		Jar: cookieJar,
+		Transport: transport,
+		Jar:       cookieJar,
 	}
 	return NewRequests(client)
 }
