@@ -8,14 +8,15 @@ import (
 	"crypto/tls"
 	"errors"
 	"fmt"
-	"github.com/Zcentury/requests/method"
-	"github.com/Zcentury/requests/params"
-	"golang.org/x/net/proxy"
 	"io"
 	"net"
 	"net/http"
 	urlutil "net/url"
 	"strings"
+
+	"github.com/Zcentury/requests/method"
+	"github.com/Zcentury/requests/params"
+	"golang.org/x/net/proxy"
 )
 
 type Requests struct {
@@ -111,6 +112,8 @@ func (r *Requests) generateRequest(m method.Method, url string, args ...any) (*h
 		if err != nil {
 			return nil, fmt.Errorf("创建请求失败:%s", err)
 		}
+	case method.DELETE:
+		request, err = http.NewRequest(method.DELETE.String(), url, nil)
 	default:
 		return nil, errors.New("不支持的请求方式")
 	}
