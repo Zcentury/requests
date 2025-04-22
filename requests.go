@@ -117,6 +117,7 @@ func (r *Requests) generateRequest(m method.Method, url string, args ...any) (*h
 	default:
 		return nil, errors.New("不支持的请求方式")
 	}
+	request.Header.Add("Content-Type", contentType)
 
 	if value, ok := argMap["Headers"]; ok {
 		request.Header.Add("Content-Type", contentType)
